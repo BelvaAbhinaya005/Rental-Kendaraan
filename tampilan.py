@@ -6,16 +6,20 @@ from prettytable import PrettyTable
 lebar = 56
 garis = "=" * lebar
 
+
 def bersihkan_layar():
     os.system("cls")
+
 
 def banner(teks):
     print(garis)
     print(teks.center(lebar))
     print(garis)
 
+
 def tekan_enter(pesan = "Pencet Enter Untuk Lanjutt..."):
     input(f"\n{pesan}")
+
 
 def pilih(pesan, opsi):
     pertanyaan = [
@@ -26,6 +30,7 @@ def pilih(pesan, opsi):
     nomor = opsi.index(teks_dipilih) + 1
     return nomor
 
+
 def konfirmasi(pesan):
     hasil = pilih(pesan, ["Ya", "Tidak"])
     if hasil == 1:
@@ -33,8 +38,10 @@ def konfirmasi(pesan):
     else:
         return False
 
+
 def input_password(pesan):
     return pwinput.pwinput(prompt=pesan + ": ", mask="*")
+
 
 def tampilkan_tabel(kolom, baris):
     tabel = PrettyTable()
@@ -43,6 +50,7 @@ def tampilkan_tabel(kolom, baris):
     for isi in baris:
         tabel.add_row(isi)
     print(tabel)
+
 
 def cetak_rincian(baris):
     terpanjang = 0
@@ -53,10 +61,12 @@ def cetak_rincian(baris):
     for label, nilai in baris:
         print("  " + label.ljust(terpanjang) + " : " + str(nilai))
 
+
 def rupiah(nilai):
     teks = f"{nilai:,}"
     teks = teks.replace(",", ".")
     return "Rp" + teks
+
 
 def format_tanggal(tanggal):
     return tanggal.strftime("%d-%m-%Y")
