@@ -92,7 +92,7 @@ def ubah_kendaraan():
     print()
     label = label_kendaraan(kendaraan)
     nomor = pilih("Pilih kendaraan yang akan diubah", label)
-    if nomor == len(label):          # Kembali
+    if nomor == len(label):
         return
     data = kendaraan[nomor - 1]
 
@@ -143,7 +143,7 @@ def hapus_kendaraan():
     print()
     label = label_kendaraan(kendaraan)
     nomor = pilih("Pilih kendaraan yang akan dihapus", label)
-    if nomor == len(label):          # Kembali
+    if nomor == len(label):
         return
     data = kendaraan[nomor - 1]
 
