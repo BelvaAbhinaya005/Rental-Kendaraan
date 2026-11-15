@@ -1,5 +1,5 @@
 from data import kendaraan, counter
-from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah)
+from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah
 from validasi_input import kumpulkan, parse_angka, cek_teks_wajib
 
 STATUS_KENDARAAN = ["Tersedia", "Disewa"]
