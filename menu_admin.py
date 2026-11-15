@@ -1,11 +1,9 @@
-"""Menu admin: pengelolaan kendaraan, transaksi rental, akun customer."""
 from data import users, transaksi
 from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi,
                         tampilkan_tabel, rupiah, format_tanggal)
 from kendaraan import pengelolaan_kendaraan
 
 STATUS_TRANSAKSI = ["Berjalan", "Selesai"]
-
 
 def tabel_transaksi(daftar):
     baris = []
