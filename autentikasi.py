@@ -1,7 +1,6 @@
 from data import users, sesi, cari_akun
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, input_password
-from validasi_input import (kumpulkan, cek_nama, cek_umur, cek_nik, cek_no_hp,
-                            cek_alamat, cek_password_baru)
+from validasi_input import (kumpulkan, cek_nama, cek_umur, cek_nik, cek_no_hp, cek_alamat, cek_password_baru)
 from menu_admin import menu_admin
 from menu_user import menu_user
 
