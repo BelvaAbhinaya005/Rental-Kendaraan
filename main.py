@@ -1,4 +1,6 @@
 from tampilan import bersihkan_layar, banner, pilih
+from autentikasi import login, register, lupa_password
+
 
 def main():
     try:
@@ -12,11 +14,11 @@ def main():
                 "4. Keluar",
             ])
             if pilihan == 1:
-                print("Fitur login belum tersedia.")
+                login()
             elif pilihan == 2:
-                print("Fitur daftar akun belum tersedia.")
+                register()
             elif pilihan == 3:
-                print("Fitur lupa password belum tersedia.")
+                lupa_password()
             else:
                 break
     except (KeyboardInterrupt, EOFError):
