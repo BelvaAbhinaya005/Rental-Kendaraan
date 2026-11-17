@@ -23,20 +23,19 @@ def tekan_enter(pesan = "Pencet Enter Untuk Lanjutt..."):
 
 def pilih(pesan, opsi):
     pertanyaan = [
-        inquirer.List("pilihan", message=pesan, choices=opsi, carousel=True)
+        inquirer.List(
+            "pilihan",
+            message=pesan,
+            choices=[(label, nomor) for nomor, label in enumerate(opsi, 1)],
+            carousel=True,
+        )
     ]
     jawaban = inquirer.prompt(pertanyaan, raise_keyboard_interrupt=True)
-    teks_dipilih = jawaban["pilihan"]
-    nomor = opsi.index(teks_dipilih) + 1
-    return nomor
+    return jawaban["pilihan"]
 
 
 def konfirmasi(pesan):
-    hasil = pilih(pesan, ["Ya", "Tidak"])
-    if hasil == 1:
-        return True
-    else:
-        return False
+    return pilih(pesan, ["Ya", "Tidak"]) == 1
 
 
 def input_password(pesan):
@@ -47,19 +46,14 @@ def tampilkan_tabel(kolom, baris):
     tabel = PrettyTable()
     tabel.field_names = kolom
     tabel.align = "l"
-    for isi in baris:
-        tabel.add_row(isi)
+    tabel.add_rows(baris)
     print(tabel)
 
 
 def cetak_rincian(baris):
-    terpanjang = 0
+    lebar = max(len(label) for label, _ in baris)
     for label, nilai in baris:
-        if len(label) > terpanjang:
-            terpanjang = len(label)
-
-    for label, nilai in baris:
-        print("  " + label.ljust(terpanjang) + " : " + str(nilai))
+        print(f"  {label.ljust(lebar)} : {nilai}")
 
 
 def rupiah(nilai):
@@ -68,5 +62,5 @@ def rupiah(nilai):
     return "Rp" + teks
 
 
-def format_tanggal(tanggal):
-    return tanggal.strftime("%d-%m-%Y")
+def format_waktu(waktu):
+    return waktu.strftime("%d-%m-%Y %H:%M:%S")
