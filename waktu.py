@@ -33,3 +33,4 @@ def nomor_hari(waktu):
 
 def awal_hari(nomor):
     return MULAI_PROGRAM + nomor * HARI
+    
