@@ -49,7 +49,7 @@ def pesan_kendaraan():
     print()
 
     label = [f"{no}. {k['merek']} ({k['tipe']}) - {rupiah(k['harga'])}/hari"
-             for no, k in enumerate(tersedia, 1)] + ["Kembali"]
+            for no, k in enumerate(tersedia, 1)] + ["Kembali"]
     nomor = pilih("Pilih kendaraan yang akan dipesan", label)
     if nomor == len(label):
         return
@@ -80,7 +80,7 @@ def pesan_kendaraan():
 
     if akun["saldo"] < dp:
         print(f"\nSaldo tidak cukup untuk membayar DP {DP_PERSEN}%! "
-              "Silakan top up saldo terlebih dahulu.")
+            "Silakan top up saldo terlebih dahulu.")
         tekan_enter()
         return
 
@@ -125,18 +125,18 @@ def pengembalian_kendaraan():
     bersihkan_layar()
     banner("PENGEMBALIAN KENDARAAN")
     berjalan = [t for t in transaksi
-                if t["nik"] == akun["nik"] and t["status"] == "Berjalan"]
+    if t["nik"] == akun["nik"] and t["status"] == "Berjalan"]
     if not berjalan:
-        print("Tidak ada kendaraan yang sedang disewa.")
+        print("tidak ada kendaraan yang sedang disewa.")
         tekan_enter()
         return
 
     tampilkan_tabel(
         ["No", "ID", "Kendaraan", "Waktu Sewa", "Lama Sewa", "Total Biaya",
-         f"Sisa Pelunasan ({100 - DP_PERSEN}%)"],
+        f"Sisa Pelunasan ({100 - DP_PERSEN}%)"],
         [[no, t["id"], t["kendaraan"], format_waktu(t["waktu_sewa"]),
-          f"{t['lama_sewa']} hari", rupiah(t["total_biaya"]), rupiah(t["pelunasan"])]
-         for no, t in enumerate(berjalan, 1)],
+        f"{t['lama_sewa']} hari", rupiah(t["total_biaya"]), rupiah(t["pelunasan"])]
+        for no, t in enumerate(berjalan, 1)],
     )
     print()
 
@@ -200,11 +200,11 @@ def riwayat_transaksi():
     else:
         tampilkan_tabel(
             ["No", "ID", "Kendaraan", "Waktu Sewa", "Lama Sewa", "Total Biaya",
-             f"DP ({DP_PERSEN}%)", "Denda", "Status"],
+            f"DP ({DP_PERSEN}%)", "Denda", "Status"],
             [[no, t["id"], t["kendaraan"], format_waktu(t["waktu_sewa"]),
-              f"{t['lama_sewa']} hari", rupiah(t["total_biaya"]), rupiah(t["dp"]),
-              rupiah(t["denda"]), t["status"]]
-             for no, t in enumerate(riwayat, 1)],
+            f"{t['lama_sewa']} hari", rupiah(t["total_biaya"]), rupiah(t["dp"]),
+            rupiah(t["denda"]), t["status"]]
+            for no, t in enumerate(riwayat, 1)],
         )
     tekan_enter()
 
@@ -217,8 +217,7 @@ def top_up_saldo():
     print(f"Saldo saat ini: {rupiah(akun['saldo'])}")
     print("Persyaratan nominal: angka, lebih dari 0\n")
 
-    nominal, error = parse_angka(input("Nominal top up: "), "Nominal", minimal=1,
-                                 pesan_minimal="Nominal harus lebih dari 0!")
+    nominal, error = parse_angka(input("Nominal top up: "), "Nominal", minimal=1,pesan_minimal="Nominal harus lebih dari 0!")
     if error:
         print(f"\nError: {error}")
         tekan_enter()
@@ -227,3 +226,4 @@ def top_up_saldo():
     akun["saldo"] += nominal
     print(f"\nTop up berhasil! Saldo Anda sekarang: {rupiah(akun['saldo'])}")
     tekan_enter()
+
