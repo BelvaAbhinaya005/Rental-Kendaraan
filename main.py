@@ -27,5 +27,6 @@ def main():
     bersihkan_layar()
     print("Bye-bye!")
 
+
 if __name__ == "__main__":
     main()
