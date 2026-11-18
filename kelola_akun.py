@@ -1,8 +1,6 @@
 from data import users, transaksi, sesi
-from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi,
-                      input_password, tampilkan_tabel, rupiah)
-from validasi_input import (kumpulkan, cek_nama, cek_umur, cek_no_hp,
-                            cek_alamat, cek_password_baru)
+from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, input_password, tampilkan_tabel, rupiah)
+from validasi_input import (kumpulkan, cek_nama, cek_umur, cek_no_hp, cek_alamat, cek_password_baru)
 
 
 def ubah_password():
