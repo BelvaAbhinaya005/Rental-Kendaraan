@@ -17,7 +17,7 @@ def banner(teks):
     print(garis)
 
 
-def tekan_enter(pesan = "Pencet Enter Untuk Lanjutt..."):
+def tekan_enter(pesan = "Pencet Enter Untuk Lanjut..."):
     input(f"\n{pesan}")
 
 
