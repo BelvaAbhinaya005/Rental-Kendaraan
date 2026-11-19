@@ -127,7 +127,7 @@ def pengembalian_kendaraan():
     berjalan = [t for t in transaksi
     if t["nik"] == akun["nik"] and t["status"] == "Berjalan"]
     if not berjalan:
-        print("tidak ada kendaraan yang sedang disewa.")
+        print("Tidak ada kendaraan yang sedang disewa.")
         tekan_enter()
         return
 
