@@ -226,4 +226,3 @@ def top_up_saldo():
     akun["saldo"] += nominal
     print(f"\nTop up berhasil! Saldo Anda sekarang: {rupiah(akun['saldo'])}")
     tekan_enter()
-
