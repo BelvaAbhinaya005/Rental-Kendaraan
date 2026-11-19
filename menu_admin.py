@@ -1,6 +1,10 @@
 from data import users, transaksi
+<<<<<<< Updated upstream
 from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi,
                         tampilkan_tabel, rupiah, format_tanggal)
+=======
+from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_tanggal)
+>>>>>>> Stashed changes
 from kendaraan import pengelolaan_kendaraan
 
 STATUS_TRANSAKSI = ["Berjalan", "Selesai"]
