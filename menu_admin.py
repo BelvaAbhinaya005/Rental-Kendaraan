@@ -1,5 +1,14 @@
 from data import users, transaksi
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi,
+                        tampilkan_tabel, rupiah, format_tanggal)
+=======
+from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_tanggal)
+>>>>>>> Stashed changes
+=======
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_waktu
+>>>>>>> main
 from kendaraan import pengelolaan_kendaraan
 from waktu import waktu_sekarang, nomor_hari, awal_hari, MENIT_PER_HARI
 import matplotlib.pyplot as plt

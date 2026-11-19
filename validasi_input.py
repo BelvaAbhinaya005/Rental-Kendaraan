@@ -1,33 +1,29 @@
 from data import users
 
 
-def cek_angka(teks):
+def _angka(teks):
     return teks.isascii() and teks.isdigit()
 
 
 def kumpulkan(*hasil):
-    daftar_error = []
-    for pesan in hasil:
-        if pesan:
-            daftar_error.append(pesan)
-    return daftar_error
+    return [pesan for pesan in hasil if pesan]
 
 
-def parse_angka(teks, label, minimal=1):
+def parse_angka(teks, label, minimal=1, pesan_minimal=None):
     teks = teks.strip()
     if teks == "":
-        return None, f"{label} tidak boleh kosong!"
-    if not cek_angka(teks):
-        return None, f"{label} harus berupa angka bulat!"
+        return None, f"{label} Tidak boleh kosong"
+    if not _angka(teks):
+        return None, f"{label} Harus berupa angka bulat!"
     nilai = int(teks)
     if nilai < minimal:
-        return None, f"{label} minimal {minimal}!"
+        return None, pesan_minimal or f"{label} minimal {minimal}!"
     return nilai, None
 
 
 def cek_teks_wajib(teks, label):
     if teks.strip() == "":
-        return f"{label} tidak boleh kosong!"
+        return f"{label} Tidak boleh kosong!"
     return None
 
 
@@ -41,7 +37,7 @@ def cek_nama(nama, kecuali=None):
 
 
 def cek_umur(umur):
-    if not cek_angka(umur):
+    if not _angka(umur):
         return "Umur harus berupa angka!"
     if int(umur) < 18:
         return "Umur minimal 18 tahun!"
@@ -49,16 +45,15 @@ def cek_umur(umur):
 
 
 def cek_nik(nik):
-    if not cek_angka(nik) or len(nik) != 16:
+    if not _angka(nik) or len(nik) != 16:
         return "NIK harus berupa angka 16 digit!"
-    for akun in users.values():
-        if akun["nik"] == nik:
-            return "NIK sudah terdaftar!"
+    if any(akun["nik"] == nik for akun in users.values()):
+        return "NIK sudah terdaftar!"
     return None
 
 
 def cek_no_hp(no_hp):
-    if not cek_angka(no_hp) or len(no_hp) < 10 or len(no_hp) > 13:
+    if not _angka(no_hp) or not 10 <= len(no_hp) <= 13:
         return "No. HP harus berupa angka 10-13 digit!"
     if not no_hp.startswith("08"):
         return "No. HP harus diawali 08!"
@@ -73,3 +68,4 @@ def cek_password_baru(password):
     if password.strip() == "":
         return "Password tidak boleh kosong!"
     return None
+
