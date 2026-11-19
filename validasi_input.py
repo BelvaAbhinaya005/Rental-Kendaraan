@@ -13,12 +13,12 @@ def kumpulkan(*hasil):
     return daftar_error
 
 
-def parse_angka(teks, label, minimal=1):
+def parse_angka(teks, label, minimal=1, pesan_minimal=None):
     teks = teks.strip()
     if teks == "":
-        return None, f"{label} tidak boleh kosong!"
+        return None, f"{label} tidak boleh kosong"
     if not cek_angka(teks):
-        return None, f"{label} harus berupa angka bulat!"
+        return None, f"{label} harus berupa angka bulat"
     nilai = int(teks)
     if nilai < minimal:
         return None, f"{label} minimal {minimal}!"
@@ -27,7 +27,7 @@ def parse_angka(teks, label, minimal=1):
 
 def cek_teks_wajib(teks, label):
     if teks.strip() == "":
-        return f"{label} tidak boleh kosong!"
+        return f"{label} tidak boleh kosong"
     return None
 
 
@@ -36,7 +36,7 @@ def cek_nama(nama, kecuali=None):
         return "Nama tidak boleh kosong!"
     for pemilik in users:
         if pemilik != kecuali and pemilik.lower() == nama.lower():
-            return "Nama sudah digunakan akun lain!"
+            return "Nama sudah digunakan akun lain"
     return None
 
 
@@ -53,7 +53,7 @@ def cek_nik(nik):
         return "NIK harus berupa angka 16 digit!"
     for akun in users.values():
         if akun["nik"] == nik:
-            return "NIK sudah terdaftar!"
+            return "NIK sudah terdaftar"
     return None
 
 
@@ -61,7 +61,7 @@ def cek_no_hp(no_hp):
     if not cek_angka(no_hp) or len(no_hp) < 10 or len(no_hp) > 13:
         return "No. HP harus berupa angka 10-13 digit!"
     if not no_hp.startswith("08"):
-        return "No. HP harus diawali 08!"
+        return "No. HP harus diawali 08"
     return None
 
 
@@ -71,7 +71,6 @@ def cek_alamat(alamat):
 
 def cek_password_baru(password):
     if password.strip() == "":
-        return "Password tidak boleh kosong!"
+        return "Password tidak boleh kosong"
     return None
 
- 
