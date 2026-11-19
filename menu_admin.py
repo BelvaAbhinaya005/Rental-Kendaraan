@@ -1,4 +1,6 @@
 from data import users, transaksi
+from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi,tampilkan_tabel, rupiah, format_waktu)
+from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_waktu)
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_waktu
 from kendaraan import pengelolaan_kendaraan
 from waktu import waktu_sekarang, nomor_hari, awal_hari, MENIT_PER_HARI
@@ -118,7 +120,7 @@ def diagram_transaksi():
 def akun_customer():
     bersihkan_layar()
     banner("AKUN CUSTOMER")
-    daftar = [(nama, akun) for nama, akun in users.items() if akun["role"] == "customer"]
+    daftar = [(nama, akun) for nama, akun in users.items() if akun["role"] == "user"]
     if not daftar:
         print("Belum ada akun customer.")
         tekan_enter()
