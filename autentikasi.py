@@ -24,8 +24,7 @@ def register():
     no_hp = input("No. HP   : ").strip()
     alamat = input("Alamat   : ").strip()
 
-    daftar_error = kumpulkan(cek_nama(nama), cek_umur(umur), cek_nik(nik),
-                             cek_no_hp(no_hp), cek_alamat(alamat))
+    daftar_error = kumpulkan(cek_nama(nama), cek_umur(umur), cek_nik(nik), cek_no_hp(no_hp), cek_alamat(alamat))
     if daftar_error:
         print()
         for pesan in daftar_error:
