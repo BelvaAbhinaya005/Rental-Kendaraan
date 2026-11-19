@@ -2,7 +2,7 @@ from data import kendaraan, counter
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah
 from validasi_input import kumpulkan, parse_angka, cek_teks_wajib
 
-STATUS_KENDARAAN = ["Tersedia", "Disewa"]
+STATUS_KENDARAAN = ["Tersedia", "Disewa", "Maintenance"]
 
 
 def tabel_kendaraan(daftar):
@@ -66,7 +66,7 @@ def tambah_kendaraan():
         tekan_enter()
         return
 
-    status = STATUS_KENDARAAN[pilih("Status", ["1. Tersedia", "2. Disewa"]) - 1]
+    status = STATUS_KENDARAAN[pilih("Status", ["1. Tersedia", "2. Disewa", "3. Maintenance"]) - 1]
 
     counter["kendaraan"] += 1
     kendaraan.append({
@@ -102,7 +102,7 @@ def ubah_kendaraan():
     tipe = input("Tipe               : ").strip()
     merek = input("Merek              : ").strip()
     harga_teks = input("Harga Rental / Hari : ").strip()
-    status_baru = pilih("Status", ["1. Tidak diubah", "2. Tersedia", "3. Disewa"])
+    status_baru = pilih("Status", ["1. Tidak diubah", "2. Tersedia", "3. Disewa", "4. Maintenance"])
 
     harga = None
     error_harga = None

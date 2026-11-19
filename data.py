@@ -1,7 +1,7 @@
 from waktu import MULAI_PROGRAM, HARI
 
-dp_persen = 50
-denda_persen_per_hari = 30
+DP_PERSEN = 50
+DENDA_PERSEN_PER_HARI = 50
 
 users = {
     "admin1": {
