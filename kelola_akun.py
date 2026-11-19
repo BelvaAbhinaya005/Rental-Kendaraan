@@ -1,6 +1,6 @@
 from data import users, transaksi, sesi
-from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, input_password, tampilkan_tabel, rupiah)
-from validasi_input import (kumpulkan, cek_nama, cek_umur, cek_no_hp, cek_alamat, cek_password_baru)
+from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, input_password, tampilkan_tabel, rupiah
+from validasi_input import kumpulkan, cek_nama, cek_umur, cek_no_hp, cek_password_baru
 
 
 def ubah_password():
@@ -44,40 +44,25 @@ def ubah_data_diri():
     bersihkan_layar()
     banner("UBAH DATA DIRI")
     print("Persyaratan:")
-    print("  Nama   : tidak boleh kosong, belum dipakai akun lain")
+    print("  Nama   : belum dipakai akun lain")
     print("  Umur   : angka, minimal 18")
     print("  No. HP : angka, 10-13 digit, diawali 08")
-    print("  Alamat : tidak boleh kosong")
     print("  (NIK tidak bisa diubah)\n")
 
-    pilihan = pilih("Pilih data yang ingin diubah", [
-        "1. Ubah Nama",
-        "2. Ubah Umur",
-        "3. Ubah No. HP",
-        "4. Ubah Alamat",
-        "5. Kembali",
-    ])
-    if pilihan == 5:
-        return
+    print(f"Data saat ini: {nama_lama} - {akun['umur']} tahun - "
+          f"{akun['no_hp']} - {akun['alamat']}")
+    print("Masukkan data baru (Enter = tidak diubah):")
+    nama_baru = input("Nama   : ").strip()
+    umur = input("Umur   : ").strip()
+    no_hp = input("No. HP : ").strip()
+    alamat = input("Alamat : ").strip()
 
-    if pilihan == 1:
-        nama_baru = input("\nNama baru: ").strip()
-        password = input_password("Password saat ini")
-        if password == akun["password"]:
-            error_password = None
-        else:
-            error_password = "Password salah!"
-        daftar_error = kumpulkan(cek_nama(nama_baru, kecuali=nama_lama), error_password)
-    elif pilihan == 2:
-        umur = input("\nUmur baru: ").strip()
-        daftar_error = kumpulkan(cek_umur(umur))
-    elif pilihan == 3:
-        no_hp = input("\nNo. HP baru: ").strip()
-        daftar_error = kumpulkan(cek_no_hp(no_hp))
-    else:
-        alamat = input("\nAlamat baru: ").strip()
-        daftar_error = kumpulkan(cek_alamat(alamat))
-
+    daftar_error = kumpulkan(
+        cek_nama(nama_baru, kecuali=nama_lama) if nama_baru else None,
+        cek_umur(umur) if umur else None,
+        cek_no_hp(no_hp) if no_hp else None,
+        cek_alamat(alamat) if alamat else None,
+    )
     if daftar_error:
         print()
         for pesan in daftar_error:
@@ -85,21 +70,33 @@ def ubah_data_diri():
         tekan_enter()
         return
 
-    if pilihan == 1:
-        if nama_baru != nama_lama:
-            users[nama_baru] = users.pop(nama_lama)  
-            sesi["nama"] = nama_baru
-            for t in transaksi:                       
-                if t["nik"] == akun["nik"]:
-                    t["customer"] = nama_baru
-    elif pilihan == 2:
-        akun["umur"] = int(umur)
-    elif pilihan == 3:
-        akun["no_hp"] = no_hp
-    else:
-        akun["alamat"] = alamat
+    ganti_nama = nama_baru != "" and nama_baru != nama_lama
+    if ganti_nama:
+        password = input_password("Password saat ini")
+        if password != akun["password"]:
+            print("\nError: Password salah!")
+            tekan_enter()
+            return
 
-    print("\nData berhasil diperbarui!")
+    berubah = False
+    if umur:
+        akun["umur"] = int(umur)
+        berubah = True
+    if no_hp:
+        akun["no_hp"] = no_hp
+        berubah = True
+    if alamat:
+        akun["alamat"] = alamat
+        berubah = True
+    if ganti_nama:
+        users[nama_baru] = users.pop(nama_lama)
+        sesi["nama"] = nama_baru
+        for t in transaksi:
+            if t["nik"] == akun["nik"]:
+                t["customer"] = nama_baru
+        berubah = True
+
+    print("\nData berhasil diperbarui!" if berubah else "\nTidak ada data yang diubah.")
     tekan_enter()
 
 
@@ -130,4 +127,3 @@ def kelola_akun():
             ubah_data_diri()
         else:
             break
-
