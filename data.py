@@ -12,6 +12,15 @@ users = {
         "password": "admin123",
         "role": "admin",
         "saldo": 0,
+    },   
+    "admin2": {
+        "nik": "6401010101900002",
+        "umur": 27, 
+        "no_hp": "0812000000023",
+        "alamat": "Jl. Ahmad Yani",
+        "password": "admin123",
+        "role": "admin",
+        "saldo": 0,
     },
     "Belva": {
         "nik": "6401010101900005",
