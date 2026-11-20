@@ -1,6 +1,6 @@
 from data import users, transaksi
-from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi,tampilkan_tabel, rupiah, format_waktu)
-from tampilan import (bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_waktu)
+from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi,tampilkan_tabel, rupiah, format_waktu
+from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_waktu
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_waktu
 from kendaraan import pengelolaan_kendaraan
 from waktu import waktu_sekarang, nomor_hari, awal_hari, MENIT_PER_HARI
