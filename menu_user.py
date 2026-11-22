@@ -48,7 +48,7 @@ def pesan_kendaraan():
     )
     print()
 
-    label = [f"{no}. {k['merek']} ({k['tipe']}) - {rupiah(k['harga'])}/hari"
+    label = [f"{no}. {k['merek']}"
             for no, k in enumerate(tersedia, 1)] + ["Kembali"]
     nomor = pilih("Pilih kendaraan yang akan dipesan", label)
     if nomor == len(label):

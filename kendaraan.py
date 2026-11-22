@@ -14,7 +14,7 @@ def tabel_kendaraan(daftar):
 
 
 def label_kendaraan(daftar):
-    label = [f"{no}. {k['merek']} ({k['tipe']}) - {rupiah(k['harga'])}/hari - {k['status']}"
+    label = [f"{no}. {k['merek']}"
              for no, k in enumerate(daftar, 1)]
     label.append("Kembali")
     return label
