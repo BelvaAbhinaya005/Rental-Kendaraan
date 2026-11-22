@@ -105,7 +105,7 @@ def diagram_transaksi():
     langkah = max(1, len(daftar_hari) // 12)
     posisi = daftar_hari[::langkah]
     sumbu.set_xticks(posisi)
-    sumbu.set_xticklabels([awal_hari(h).strftime("%H:%M") for h in posisi])
+    sumbu.set_xticklabels([tanggal_hari(h).strftime("%H:%M") for h in posisi])
     if len(daftar_hari) <= 15:
         for hari, nilai in zip(daftar_hari, jumlah):
             sumbu.annotate(str(nilai), (hari, nilai), textcoords="offset points", xytext=(0, 7), ha="center", fontweight="bold")
