@@ -4,6 +4,8 @@ from validasi_input import parse_angka
 from kelola_akun import kelola_akun
 from waktu import waktu_sekarang, hitung_jatuh_tempo, hitung_hari_terlambat, MENIT_PER_HARI
 
+MAKS_TOP_UP = 5000000
+
 
 def menu_user():
     while True:
@@ -215,9 +217,9 @@ def top_up_saldo():
     bersihkan_layar()
     banner("TOP UP SALDO")
     print(f"Saldo saat ini: {rupiah(akun['saldo'])}")
-    print("Persyaratan nominal: angka, lebih dari 0 dan Maksimal Topup Rp. 5.000.000\n")
+    print(f"Persyaratan nominal: angka, lebih dari 0 dan maksimal {rupiah(MAKS_TOP_UP)}\n")
 
-    nominal, error = parse_angka(input("Nominal top up: "), "Nominal", minimal=1,pesan_minimal="Nominal harus lebih dari 0!")
+    nominal, error = parse_angka(input("Nominal top up: "), "Nominal", minimal=1, pesan_minimal="Nominal harus lebih dari 0!", maksimal=MAKS_TOP_UP, pesan_maksimal=f"Maksimal top up {rupiah(MAKS_TOP_UP)}")
     if error:
         print(f"\nError: {error}")
         tekan_enter()

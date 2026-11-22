@@ -70,14 +70,6 @@ def tambah_kendaraan():
         tekan_enter()
         return
 
-    error = kumpulkan(cek_teks_wajib(tipe, "Tipe"), cek_teks_wajib(merek, "Merek"), error_harga)
-    if error:
-        print()
-        for pesan in error:
-            print(f"Error: {pesan}")
-        tekan_enter()
-        return
-
     status = STATUS_KENDARAAN[pilih("Status", ["1. Tersedia", "2. Disewa", "3. Maintenance"]) - 1]
 
     counter["kendaraan"] += 1
