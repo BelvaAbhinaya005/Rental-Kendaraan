@@ -12,14 +12,14 @@ def kumpulkan(*hasil):
 def parse_angka(teks, label, minimal=1, pesan_minimal=None):
     teks = teks.strip()
     if teks == "":
-        return None, f"{label} Tidak boleh kosong"
+        return None, f"{label} Tidak boleh kosong!"
     if not _angka(teks):
         return None, f"{label} Harus berupa angka bulat!"
     nilai = int(teks)
     if nilai < minimal:
         return None, pesan_minimal or f"{label} minimal {minimal}!"
     if nilai > 5000000:
-        return None, f"Maksimal Topup 5000000"
+        return None, f"Maksimal Topup Rp.5.000.000"
     return nilai, None
 
 
@@ -68,6 +68,6 @@ def cek_alamat(alamat):
 
 def cek_password_baru(password):
     if password.strip() == "":
-        return "Password tidak boleh kosong!"
+        return "Password tidak boleh kosong"
     return None
 
