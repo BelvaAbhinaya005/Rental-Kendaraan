@@ -215,7 +215,7 @@ def top_up_saldo():
     bersihkan_layar()
     banner("TOP UP SALDO")
     print(f"Saldo saat ini: {rupiah(akun['saldo'])}")
-    print("Persyaratan nominal: angka, lebih dari 0\n")
+    print("Persyaratan nominal: angka, lebih dari 0 dan Maksimal Topup 5000000\n")
 
     nominal, error = parse_angka(input("Nominal top up: "), "Nominal", minimal=1,pesan_minimal="Nominal harus lebih dari 0!")
     if error:
