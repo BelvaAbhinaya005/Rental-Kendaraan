@@ -96,7 +96,7 @@ def diagram_transaksi():
     fig, sumbu = plt.subplots(figsize=(8, 4.5))
     sumbu.plot(daftar_hari, jumlah, marker="o", color="#2a7de1", linewidth=2)
     sumbu.set_title("Perkembangan Rental per Hari")
-    sumbu.set_xlabel(f"Jam mulai tiap hari (1 hari = {MENIT_PER_HARI:g} menit waktu nyata)")
+    sumbu.set_xlabel(f"Tanggal (setiap {MENIT_PER_HARI:g} menit waktu nyata = 1 hari)")
     sumbu.set_ylabel("Jumlah Rental")
     sumbu.yaxis.set_major_locator(MaxNLocator(integer=True))
     sumbu.set_ylim(0, max(jumlah) + 1)
@@ -105,7 +105,7 @@ def diagram_transaksi():
     langkah = max(1, len(daftar_hari) // 12)
     posisi = daftar_hari[::langkah]
     sumbu.set_xticks(posisi)
-    sumbu.set_xticklabels([tanggal_hari(h).strftime("%H:%M") for h in posisi])
+    sumbu.set_xticklabels([tanggal_hari(h).strftime("%d-%m-%Y") for h in posisi])
     if len(daftar_hari) <= 15:
         for hari, nilai in zip(daftar_hari, jumlah):
             sumbu.annotate(str(nilai), (hari, nilai), textcoords="offset points", xytext=(0, 7), ha="center", fontweight="bold")
