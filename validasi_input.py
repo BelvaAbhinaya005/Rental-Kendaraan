@@ -74,7 +74,6 @@ def cek_password_baru(password):
 
 
 def cek_tipe_huruf(teks):
-    """Tipe wajib diisi dan hanya boleh huruf"""
     if teks == "":
         return "Tipe tidak boleh kosong."
     if not re.fullmatch(r"[A-Za-z ]+", teks):
