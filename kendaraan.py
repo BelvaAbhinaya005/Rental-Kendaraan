@@ -1,6 +1,6 @@
 from data import kendaraan, transaksi, counter
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah
-from validasi_input import kumpulkan, parse_angka, cek_teks_wajib
+from validasi_input import kumpulkan, parse_angka, cek_teks_wajib, cek_tipe_huruf
 
 STATUS_KENDARAAN = ["Tersedia", "Disewa", "Maintenance"]
 
@@ -54,13 +54,21 @@ def tambah_kendaraan():
     bersihkan_layar()
     banner("TAMBAH KENDARAAN")
     print("Persyaratan data:")
-    print("  Tipe  : tidak boleh kosong")
+    print("  Tipe  : tidak boleh kosong dan hanya boleh huruf")
     print("  Merek : tidak boleh kosong")
     print("  Harga : angka bulat, minimal 1 (per hari, dalam Rupiah)\n")
 
     tipe = input("Tipe               : ").strip()
     merek = input("Merek              : ").strip()
     harga, error_harga = parse_angka(input("Harga Rental / Hari : "), "Harga rental")
+
+    error = kumpulkan(cek_tipe_huruf(tipe), cek_teks_wajib(merek, "Merek"), error_harga)
+    if error:
+        print()
+        for pesan in error:
+            print(f"Error: {pesan}")
+        tekan_enter()
+        return
 
     error = kumpulkan(cek_teks_wajib(tipe, "Tipe"), cek_teks_wajib(merek, "Merek"), error_harga)
     if error:
@@ -104,13 +112,13 @@ def ubah_kendaraan():
         print("\nKendaraan sedang disewa (ada transaksi berjalan), data tidak bisa diubah.")
         tekan_enter()
         return
-
+        
     print(f"\nData saat ini: {data['merek']} ({data['tipe']}) - "
           f"{rupiah(data['harga'])}/hari - {data['status']}")
     print("Masukkan data baru (Enter = tidak diubah):")
-    tipe = input("Tipe               : ").strip()
-    merek = input("Merek              : ").strip()
-    harga_teks = input("Harga Rental / Hari : ").strip()
+    tipe = input("Tipe (Huruf)            : ").strip()
+    merek = input("Merek                   : ").strip()
+    harga_teks = input("Harga Rental / Hari     : ").strip()
     status_baru = pilih("Status", ["1. Tidak diubah", "2. Tersedia", "3. Disewa", "4. Maintenance"])
 
     harga = None
@@ -121,6 +129,13 @@ def ubah_kendaraan():
         print(f"\nError: {error_harga}")
         tekan_enter()
         return
+
+    if tipe:
+        error_tipe = cek_tipe_huruf(tipe)
+        if error_tipe:
+            print(f"\nError: {error_tipe}")
+            tekan_enter()
+            return
 
     berubah = False
     if tipe:
