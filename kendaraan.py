@@ -1,8 +1,12 @@
-from data import kendaraan, counter
+from data import kendaraan, transaksi, counter
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah
 from validasi_input import kumpulkan, parse_angka, cek_teks_wajib
 
 STATUS_KENDARAAN = ["Tersedia", "Disewa", "Maintenance"]
+
+
+def sedang_disewa(data):
+    return any(t["id_kendaraan"] == data["id"] and t["status"] == "Berjalan" for t in transaksi)
 
 
 def tabel_kendaraan(daftar):
@@ -96,6 +100,11 @@ def ubah_kendaraan():
         return
     data = kendaraan[nomor - 1]
 
+    if sedang_disewa(data):
+        print("\nKendaraan sedang disewa (ada transaksi berjalan), data tidak bisa diubah.")
+        tekan_enter()
+        return
+
     print(f"\nData saat ini: {data['merek']} ({data['tipe']}) - "
           f"{rupiah(data['harga'])}/hari - {data['status']}")
     print("Masukkan data baru (Enter = tidak diubah):")
@@ -146,6 +155,11 @@ def hapus_kendaraan():
     if nomor == len(label):
         return
     data = kendaraan[nomor - 1]
+
+    if sedang_disewa(data):
+        print("\nKendaraan sedang disewa (ada transaksi berjalan), tidak bisa dihapus.")
+        tekan_enter()
+        return
 
     if konfirmasi(f"Yakin ingin menghapus {data['merek']} ({data['tipe']})?"):
         kendaraan.remove(data)
