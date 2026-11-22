@@ -10,7 +10,7 @@ def kumpulkan(*hasil):
     return [pesan for pesan in hasil if pesan]
 
 
-def parse_angka(teks, label, minimal=1, pesan_minimal=None):
+def parse_angka(teks, label, minimal=1, pesan_minimal=None, maksimal=None, pesan_maksimal=None):
     teks = teks.strip()
     if teks == "":
         return None, f"{label} Tidak boleh kosong!"
@@ -19,10 +19,9 @@ def parse_angka(teks, label, minimal=1, pesan_minimal=None):
     nilai = int(teks)
     if nilai < minimal:
         return None, pesan_minimal or f"{label} minimal {minimal}!"
-    if nilai > 5000000:
-        return None, f"Maksimal Topup Rp 5.000.000"
+    if maksimal is not None and nilai > maksimal:
+        return None, pesan_maksimal or f"{label} maksimal {maksimal}!"
     return nilai, None
-
 
 def cek_teks_wajib(teks, label):
     if teks.strip() == "":
