@@ -32,4 +32,4 @@ def nomor_hari(waktu):
 
 
 def tanggal_hari(nomor):
-    return MULAI_PROGRAM.date() + timedelta(days=nomor) #kok gak berubah ya?
+    return MULAI_PROGRAM.date() + timedelta(days=nomor)
