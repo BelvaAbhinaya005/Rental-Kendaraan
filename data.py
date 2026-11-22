@@ -61,20 +61,53 @@ users = {
 }
 
 kendaraan = [
-    {"id": 1, "tipe": "Mobil", "merek": "Toyota Avanza",    "harga": 350000, "status": "Tersedia"},
-    {"id": 2, "tipe": "Mobil", "merek": "Honda Brio",       "harga": 300000, "status": "Tersedia"},
-    {"id": 3, "tipe": "Mobil", "merek": "Mitsubishi Xpander", "harga": 400000, "status": "Tersedia"},
-    {"id": 4, "tipe": "Motor", "merek": "Honda Vario 125",  "harga": 100000, "status": "Tersedia"},
-    {"id": 5, "tipe": "Motor", "merek": "Yamaha NMAX",      "harga": 150000, "status": "Tersedia"},
-    {"id": 6, "tipe": "Motor", "merek": "Honda Beat",       "harga": 80000,  "status": "Tersedia"},
+    {"id": 1, "tipe": "Mobil", "merek": "Toyota Avanza",      "harga": 350000, "status": "Tersedia"},
+    {"id": 2, "tipe": "Mobil", "merek": "Honda Brio",         "harga": 300000, "status": "Maintenance"},
+    {"id": 3, "tipe": "Mobil", "merek": "Mitsubishi Xpander", "harga": 400000, "status": "Disewa"},
+    {"id": 4, "tipe": "Mobil", "merek": "Daihatsu Sigra",     "harga": 280000, "status": "Disewa"},
+    {"id": 5, "tipe": "Motor", "merek": "Honda Vario 125",    "harga": 100000, "status": "Tersedia"},
+    {"id": 6, "tipe": "Motor", "merek": "Yamaha NMAX",        "harga": 150000, "status": "Disewa"},
+    {"id": 7, "tipe": "Motor", "merek": "Yamaha Aerox 155",   "harga": 140000, "status": "Tersedia"},
 ]
 
 transaksi = [
+    {
+        "id": "TRX-001", "nik": "6401010101900005", "customer": "Belva",
+        "id_kendaraan": 1, "kendaraan": "Toyota Avanza (Mobil)", "harga_per_hari": 350000,
+        "lama_sewa": 2, "waktu_sewa": MULAI_PROGRAM - 8 * HARI,
+        "waktu_kembali": MULAI_PROGRAM - 6 * HARI,
+        "total_biaya": 700000, "dp": 350000, "pelunasan": 350000,
+        "denda": 0, "status": "Selesai",
+    },
+    {
+        "id": "TRX-002", "nik": "6401010101900011", "customer": "Hendra",
+        "id_kendaraan": 3, "kendaraan": "Mitsubishi Xpander (Mobil)", "harga_per_hari": 400000,
+        "lama_sewa": 3, "waktu_sewa": MULAI_PROGRAM - 2 * HARI,
+        "waktu_kembali": None,
+        "total_biaya": 1200000, "dp": 600000, "pelunasan": 600000,
+        "denda": 0, "status": "Berjalan",
+    },
+    {
+        "id": "TRX-003", "nik": "6401010101900013", "customer": "Kahfi",
+        "id_kendaraan": 6, "kendaraan": "Yamaha NMAX (Motor)", "harga_per_hari": 150000,
+        "lama_sewa": 5, "waktu_sewa": MULAI_PROGRAM - 1 * HARI,
+        "waktu_kembali": None,
+        "total_biaya": 750000, "dp": 375000, "pelunasan": 375000,
+        "denda": 0, "status": "Berjalan",
+    },
+    {
+        "id": "TRX-004", "nik": "6401010101900018", "customer": "Ferdi",
+        "id_kendaraan": 4, "kendaraan": "Daihatsu Sigra (Mobil)", "harga_per_hari": 280000,
+        "lama_sewa": 4, "waktu_sewa": MULAI_PROGRAM - 2 * HARI,
+        "waktu_kembali": None,
+        "total_biaya": 1120000, "dp": 560000, "pelunasan": 560000,
+        "denda": 0, "status": "Berjalan",
+    },
 ]
 
 sesi = {"nama": None}
 
-counter = {"kendaraan": 6, "transaksi": 0}
+counter = {"kendaraan": 7, "transaksi": 4}
 
 
 def cari_akun(identitas):
