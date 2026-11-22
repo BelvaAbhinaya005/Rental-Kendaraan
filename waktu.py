@@ -31,6 +31,5 @@ def nomor_hari(waktu):
     return math.floor((waktu - MULAI_PROGRAM) / HARI)
 
 
-def awal_hari(nomor):
-    return MULAI_PROGRAM + nomor * HARI
-    
+def tanggal_hari(nomor):
+    return MULAI_PROGRAM.date() + timedelta(days=nomor)
