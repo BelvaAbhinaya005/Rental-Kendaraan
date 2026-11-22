@@ -1,4 +1,5 @@
 from data import users
+import re
 
 
 def _angka(teks):
@@ -71,3 +72,11 @@ def cek_password_baru(password):
         return "Password tidak boleh kosong"
     return None
 
+
+def cek_tipe_huruf(teks):
+    """Tipe wajib diisi dan hanya boleh huruf"""
+    if teks == "":
+        return "Tipe tidak boleh kosong."
+    if not re.fullmatch(r"[A-Za-z ]+", teks):
+        return "Tipe hanya boleh berisi huruf"
+    return None
