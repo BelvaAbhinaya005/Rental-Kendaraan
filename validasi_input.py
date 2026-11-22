@@ -32,6 +32,8 @@ def cek_teks_wajib(teks, label):
 def cek_nama(nama, kecuali=None):
     if nama.strip() == "":
         return "Nama tidak boleh kosong!"
+    if nama.strip().isdigit():
+        return "Nama tidak boleh hanya berisi angka!"
     for pemilik in users:
         if pemilik != kecuali and pemilik.lower() == nama.lower():
             return "Nama sudah digunakan akun lain!"
