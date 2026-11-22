@@ -3,7 +3,7 @@ from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi,tam
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_waktu
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah, format_waktu
 from kendaraan import pengelolaan_kendaraan
-from waktu import waktu_sekarang, nomor_hari, awal_hari, MENIT_PER_HARI
+from waktu import waktu_sekarang, nomor_hari, tanggal_hari, MENIT_PER_HARI
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 
