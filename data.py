@@ -70,11 +70,35 @@ kendaraan = [
 ]
 
 transaksi = [
+    {
+        "id": "TRX-001", "nik": "6401010101950001", "customer": "user1",
+        "id_kendaraan": 1, "kendaraan": "Toyota Avanza (Mobil)", "harga_per_hari": 350000,
+        "lama_sewa": 2, "waktu_sewa": MULAI_PROGRAM - 10 * HARI,
+        "waktu_kembali": MULAI_PROGRAM - 8 * HARI,
+        "total_biaya": 700000, "dp": 350000, "pelunasan": 350000,
+        "denda": 0, "status": "Selesai",
+    },
+    {
+        "id": "TRX-002", "nik": "6401010101950002", "customer": "user2",
+        "id_kendaraan": 3, "kendaraan": "Mitsubishi Xpander (Mobil)", "harga_per_hari": 400000,
+        "lama_sewa": 3, "waktu_sewa": MULAI_PROGRAM - 5.5 * HARI,
+        "waktu_kembali": None,
+        "total_biaya": 1200000, "dp": 600000, "pelunasan": 600000,
+        "denda": 0, "status": "Berjalan",
+    },
+    {
+        "id": "TRX-003", "nik": "6401010101950001", "customer": "user1",
+        "id_kendaraan": 5, "kendaraan": "Yamaha NMAX (Motor)", "harga_per_hari": 150000,
+        "lama_sewa": 5, "waktu_sewa": MULAI_PROGRAM - 1 * HARI,
+        "waktu_kembali": None,
+        "total_biaya": 750000, "dp": 375000, "pelunasan": 375000,
+        "denda": 0, "status": "Berjalan",
+    },
 ]
 
 sesi = {"nama": None}
 
-counter = {"kendaraan": 6, "transaksi": 0}
+counter = {"kendaraan": 6, "transaksi": 3}
 
 
 def cari_akun(identitas):
