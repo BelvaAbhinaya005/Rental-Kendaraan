@@ -75,37 +75,35 @@ def lupa_password():
     tekan_enter()
 
 
-def login():
-    percobaan = 0
-    while True:
-        bersihkan_layar()
+def login(percobaan=0):
+    bersihkan_layar()
 
-        if percobaan == MAKS_PERCOBAAN:
-            banner("LOGIN")
-            print(f"Login gagal {MAKS_PERCOBAAN}x.\n")
-            if pilih("Lupa password?", ["1. Ya", "2. Tidak"]) == 1:
-                lupa_password()
-            return
-
+    if percobaan == MAKS_PERCOBAAN:
         banner("LOGIN")
-        identitas = input("Nama / NIK : ").strip()
-        password = input_password("Password  ")
+        print(f"Login gagal {MAKS_PERCOBAAN}x.\n")
+        if pilih("Lupa password?", ["1. Ya", "2. Tidak"]) == 1:
+            lupa_password()
+        return
 
-        hasil = cari_akun(identitas)
-        if hasil is not None and hasil[1]["password"] == password:
-            nama, akun = hasil
-            sesi["nama"] = nama
-            print(f"\nLogin berhasil! Selamat datang, {nama} ({akun['role']})")
-            tekan_enter()
+    banner("LOGIN")
+    identitas = input("Nama / NIK : ").strip()
+    password = input_password("Password  ")
 
-            if akun["role"] == "admin":
-                menu_admin()
-            else:
-                menu_user()
-
-            sesi["nama"] = None
-            return
-
-        percobaan += 1
-        print("\nError: Nama/NIK atau password salah!")
+    hasil = cari_akun(identitas)
+    if hasil is not None and hasil[1]["password"] == password:
+        nama, akun = hasil
+        sesi["nama"] = nama
+        print(f"\nLogin berhasil! Selamat datang, {nama} ({akun['role']})")
         tekan_enter()
+
+        if akun["role"] == "admin":
+            menu_admin()
+        else:
+            menu_user()
+
+        sesi["nama"] = None
+        return
+
+    print("\nError: Nama/NIK atau password salah!")
+    tekan_enter()
+    return login(percobaan + 1)
