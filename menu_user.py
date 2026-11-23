@@ -156,7 +156,7 @@ def pengembalian_kendaraan():
         denda = hari_terlambat * trx["harga_per_hari"] * DENDA_PERSEN_PER_HARI // 100
     else:
         denda = 0
-        total_bayar = pelunasan + denda
+    total_bayar = pelunasan + denda
 
     print("\nRincian tagihan:")
     cetak_rincian([
@@ -181,11 +181,11 @@ def pengembalian_kendaraan():
         for k in kendaraan:
             if k["id"] == trx["id_kendaraan"] and k["status"] == "Disewa":
                 k["status"] = "Maintenance"
-                trx["status"] = "Selesai"
-                trx["waktu_kembali"] = sekarang
-                trx["denda"] = denda
-                print("\nKendaraan berhasil dikembalikan!")
-                print(f"Pelunasan {100 - DP_PERSEN}% berhasil. Terima kasih.")
+        trx["status"] = "Selesai"
+        trx["waktu_kembali"] = sekarang
+        trx["denda"] = denda
+        print("\nKendaraan berhasil dikembalikan!")
+        print(f"Pelunasan {100 - DP_PERSEN}% berhasil. Terima kasih.")
     else:
         print("\nPengembalian dibatalkan.")
     tekan_enter()
