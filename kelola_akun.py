@@ -70,14 +70,6 @@ def ubah_data_diri():
         tekan_enter()
         return
 
-    ganti_nama = nama_baru != "" and nama_baru != nama_lama
-    if ganti_nama:
-        password = input_password("Password saat ini")
-        if password != akun["password"]:
-            print("\nError: Password salah!")
-            tekan_enter()
-            return
-
     berubah = False
     if umur:
         akun["umur"] = int(umur)
@@ -87,13 +79,6 @@ def ubah_data_diri():
         berubah = True
     if alamat:
         akun["alamat"] = alamat
-        berubah = True
-    if ganti_nama:
-        users[nama_baru] = users.pop(nama_lama)
-        sesi["nama"] = nama_baru
-        for t in transaksi:
-            if t["nik"] == akun["nik"]:
-                t["customer"] = nama_baru
         berubah = True
 
     print("\nData berhasil diperbarui!" if berubah else "\nTidak ada data yang diubah.")
