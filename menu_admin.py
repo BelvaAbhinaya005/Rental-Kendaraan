@@ -89,27 +89,20 @@ def diagram_transaksi():
     hari_awal = min(per_hari)
     hari_akhir = max(max(per_hari), nomor_hari(waktu_sekarang()))
     daftar_hari = list(range(hari_awal, hari_akhir + 1))
-    jumlah = [per_hari.get(hari, 0) for hari in daftar_hari]
 
-    fig, sumbu = plt.subplots(figsize=(8, 4.5))
-    sumbu.plot(daftar_hari, jumlah, marker="o", color="#2a7de1", linewidth=2)
-    sumbu.set_title("Perkembangan Rental per Hari")
-    sumbu.set_xlabel(f"Tanggal (setiap {MENIT_PER_HARI:g} menit waktu nyata = 1 hari)")
-    sumbu.set_ylabel("Jumlah Rental")
-    sumbu.yaxis.set_major_locator(MaxNLocator(integer=True))
-    sumbu.set_ylim(0, max(jumlah) + 1)
-    sumbu.grid(True, alpha=0.3)
+    tanggal = [tanggal_hari(h).strftime("%d-%m-%Y") for h in daftar_hari]
+    jumlah = [per_hari.get(h, 0) for h in daftar_hari]
 
-    langkah = max(1, len(daftar_hari) // 12)
-    posisi = daftar_hari[::langkah]
-    sumbu.set_xticks(posisi)
-    sumbu.set_xticklabels([tanggal_hari(h).strftime("%d-%m-%Y") for h in posisi])
-    if len(daftar_hari) <= 15:
-        for hari, nilai in zip(daftar_hari, jumlah):
-            sumbu.annotate(str(nilai), (hari, nilai), textcoords="offset points", xytext=(0, 7), ha="center", fontweight="bold")
-    fig.autofmt_xdate()
-    fig.tight_layout()
-
+    plt.figure(figsize=(8, 4.5))
+    plt.plot(tanggal, jumlah, marker="o", color="blue")
+    plt.title("Perkembangan Rental per Hari")
+    plt.xlabel(f"Tanggal (setiap {MENIT_PER_HARI:g} menit waktu nyata = 1 hari)")
+    plt.ylabel("Jumlah Rental")
+    plt.yticks(range(0, max(jumlah) + 2)) 
+    plt.xticks(rotation=45)
+    plt.grid(True)
+    plt.tight_layout()
+    
     print("\nDiagram ditampilkan di jendela baru. Tutup jendela diagram untuk melanjutkan.")
     plt.show()
     tekan_enter()
