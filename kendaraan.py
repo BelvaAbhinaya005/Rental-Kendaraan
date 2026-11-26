@@ -1,8 +1,9 @@
 from data import kendaraan, transaksi, counter
 from tampilan import bersihkan_layar, banner, tekan_enter, pilih, konfirmasi, tampilkan_tabel, rupiah
-from validasi_input import kumpulkan, parse_angka, cek_teks_wajib, cek_tipe_huruf
+from validasi_input import kumpulkan, parse_angka, cek_teks_wajib
 
 STATUS_KENDARAAN = ["Tersedia", "Disewa", "Maintenance"]
+TIPE_KENDARAAN = ["Mobil", "Motor",]
 
 
 def sedang_disewa(data):
@@ -54,15 +55,14 @@ def tambah_kendaraan():
     bersihkan_layar()
     banner("TAMBAH KENDARAAN")
     print("Persyaratan data:")
-    print("  Tipe  : tidak boleh kosong dan hanya boleh huruf")
     print("  Merek : tidak boleh kosong")
     print("  Harga : angka bulat, minimal 1 (per hari, dalam Rupiah)\n")
 
-    tipe = input("Tipe               : ").strip()
-    merek = input("Merek              : ").strip()
+    tipe = TIPE_KENDARAAN[pilih("Tipe Kendaraan", [f"{i+1}. {t}" for i, t in enumerate(TIPE_KENDARAAN)]) - 1]
+    merek = input("Merek               : ").strip()
     harga, error_harga = parse_angka(input("Harga Rental / Hari : "), "Harga rental")
 
-    error = kumpulkan(cek_tipe_huruf(tipe), cek_teks_wajib(merek, "Merek"), error_harga)
+    error = kumpulkan(cek_teks_wajib(merek, "Merek"), error_harga)
     if error:
         print()
         for pesan in error:
@@ -108,7 +108,7 @@ def ubah_kendaraan():
     print(f"\nData saat ini: {data['merek']} ({data['tipe']}) - "
           f"{rupiah(data['harga'])}/hari - {data['status']}")
     print("Masukkan data baru (Enter = tidak diubah):")
-    tipe = input("Tipe (Huruf)            : ").strip()
+    tipe_baru = pilih("Tipe", ["Tidak diubah", "Mobil", "Motor"])
     merek = input("Merek                   : ").strip()
     harga_teks = input("Harga Rental / Hari     : ").strip()
     status_baru = pilih("Status", ["1. Tidak diubah", "2. Tersedia", "3. Disewa", "4. Maintenance"])
@@ -122,16 +122,9 @@ def ubah_kendaraan():
         tekan_enter()
         return
 
-    if tipe:
-        error_tipe = cek_tipe_huruf(tipe)
-        if error_tipe:
-            print(f"\nError: {error_tipe}")
-            tekan_enter()
-            return
-
     berubah = False
-    if tipe:
-        data["tipe"] = tipe
+    if tipe_baru == 1:
+        data["tipe"] = TIPE_KENDARAAN[tipe_baru - 2]
         berubah = True
     if merek:
         data["merek"] = merek

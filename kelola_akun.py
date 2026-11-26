@@ -45,7 +45,7 @@ def ubah_data_diri():
     banner("UBAH DATA DIRI")
     print("Persyaratan:")
     print("  Nama   : belum dipakai akun lain")
-    print("  Umur   : angka, minimal 18")
+    print("  Umur   : angka, minimal 18, maximal 150")
     print("  No. HP : angka, 10-13 digit, diawali 08")
     print("  (NIK tidak bisa diubah)\n")
 

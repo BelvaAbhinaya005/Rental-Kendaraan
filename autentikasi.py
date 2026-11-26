@@ -12,7 +12,7 @@ def register():
     banner("REGISTER")
     print("Persyaratan data:")
     print("  Nama     : tidak boleh kosong, belum dipakai akun lain")
-    print("  Umur     : angka, minimal 18")
+    print("  Umur     : angka, minimal 18, maximal 150")
     print("  NIK      : angka, 16 digit, belum terdaftar")
     print("  No. HP   : angka, 10-13 digit, diawali 08")
     print("  Alamat   : tidak boleh kosong")

@@ -43,6 +43,8 @@ def cek_nama(nama, kecuali=None):
 def cek_umur(umur):
     if not _angka(umur):
         return "Umur harus berupa angka!"
+    if int(umur) > 150:
+        return "Umur maximal 150 tahun!"
     if int(umur) < 18:
         return "Umur minimal 18 tahun!"
     return None
