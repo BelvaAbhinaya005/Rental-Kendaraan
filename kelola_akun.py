@@ -71,6 +71,10 @@ def ubah_data_diri():
         return
 
     berubah = False
+    if nama_baru:
+        users[nama_baru] = users.pop(nama_lama)
+        sesi["nama"] = nama_baru
+        berubah = True
     if umur:
         akun["umur"] = int(umur)
         berubah = True

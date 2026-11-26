@@ -23,7 +23,6 @@ def parse_angka(teks, label, minimal=1, pesan_minimal=None, maksimal=None, pesan
         return None, pesan_maksimal or f"{label} maksimal {maksimal}!"
     return nilai, None
 
-
 def cek_teks_wajib(teks, label):
     if teks.strip() == "":
         return f"{label} Tidak boleh kosong!"
