@@ -180,7 +180,7 @@ def pengembalian_kendaraan():
         akun["saldo"] -= total_bayar
         for k in kendaraan:
             if k["id"] == trx["id_kendaraan"] and k["status"] == "Disewa":
-                k["status"] = "Tersedia"
+                k["status"] = "Maintenance"
         trx["status"] = "Selesai"
         trx["waktu_kembali"] = sekarang
         trx["denda"] = denda

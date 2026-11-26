@@ -35,7 +35,11 @@ def pilih(pesan, opsi):
 
 
 def konfirmasi(pesan):
-    return pilih(pesan, ["Ya", "Tidak"]) == 1
+    jawaban = pilih(pesan, ["Ya", "Tidak"])
+    if jawaban == 1:
+        return True
+    else:
+        return False
 
 
 def input_password(pesan):
